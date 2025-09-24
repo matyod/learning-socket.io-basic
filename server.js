@@ -25,9 +25,14 @@ io.on("connection", (socket) => {
   // console.log(socket.handshake.query);
   // console.log(socket.handshake);
 
-  socket.emit("welcome", [1, 2, 3]);
+  // socket.emit("welcome", [1, 2, 3]);
 
-  socket.on("thankYou", (data) => {
-    console.log(`Message from client: ${data}`);
+  // socket.on("thankYou", (data) => {
+  //   console.log(`Message from client: ${data}`);
+  // });
+
+  socket.on("messageFromClientToServer", (newMessage) => {
+    // pass through the message to all clients connected
+    io.emit("messageFromServerToAllClients", newMessage);
   });
 });
