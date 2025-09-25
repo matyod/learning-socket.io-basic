@@ -17,11 +17,9 @@ const socket = io(); // client is served from the same domain as server
 //   socket.emit("thankYou", [4, 5, 6]);
 // });
 
+const messagesUl = document.getElementById("messages");
 const messagesForm = document.getElementById("messages-form");
 const userMessage = document.getElementById("user-message");
-
-console.log(messagesForm);
-console.log(userMessage);
 
 messagesForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -33,10 +31,8 @@ messagesForm.addEventListener("submit", (e) => {
 });
 
 socket.on("messageFromServerToAllClients", (newMessage) => {
-  const messagesUl = document.getElementById("messages");
   const messagesList = document.createElement("li");
   messagesList.classList.add("list-unstyled");
-
   messagesList.textContent = newMessage;
   messagesUl.appendChild(messagesList);
 });
